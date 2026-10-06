@@ -1,0 +1,15 @@
+const vm = require('node:vm'), fs = require('node:fs'), assert = require('node:assert/strict');
+const context=vm.createContext({});
+vm.runInContext(fs.readFileSync('web/rotation.js','utf8'),context);
+const consensus=wallets=>JSON.parse(vm.runInContext(`JSON.stringify(walletConsensus(${JSON.stringify(wallets)}))`,context));
+const row=(action,ts=10,network='bsc')=>({address:'0xToken',network,action,ts,symbol:'AAA'});
+const wallets=[{address:'0xA',rotation:[row('sell'),row('buy',20)]},{address:'0xB',rotation:[row('buy')]},{address:'0xC',rotation:[row('sell')]}];
+let result=consensus(wallets);
+assert.equal(result.length,1); assert.equal(result[0].buyers,2); assert.equal(result[0].sellers,1);
+assert.equal(result[0].active_wallets,3); assert.ok(Math.abs(result[0].buy_consensus-200/3)<1e-10);
+assert.equal(consensus([]).length,0); assert.equal(consensus(wallets.slice(0,1)).length,0);
+assert.equal(consensus([...wallets,wallets[0]])[0].active_wallets,3);
+assert.equal(consensus([{address:'a',rotation:[row('buy')]},{address:'b',rotation:[row('sell',10,'eth')]}]).length,0);
+assert.equal(consensus([...wallets,{address:'d',rotation:[row(null)]}])[0].buy_consensus,null);
+assert.equal(consensus([{address:'a',rotation:[row('buy'),row('sell')]},wallets[1]])[0].buy_consensus,null);
+console.log('Consensus checks passed: latest action, counts, percentage, empty sample, deduplication, chain identity, unknown/tied direction.');

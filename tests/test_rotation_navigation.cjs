@@ -1,0 +1,17 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const calls=[];
+const context=vm.createContext({console,document:{querySelector:()=>({value:'bsc'}),querySelectorAll:()=>[]},Intl,openToken:(...args)=>calls.push(args)});
+vm.runInContext(fs.readFileSync('web/app.js','utf8').replace(/boot\(\);\s*$/,''),context);
+vm.runInContext(fs.readFileSync('web/rotation.js','utf8'),context);
+vm.runInContext("state.chains=[{id:'base',name:'Base'},{id:'bsc',name:'BNB Chain'}]",context);
+const address='0x1234567890123456789012345678901234567890';
+assert.deepEqual(JSON.parse(vm.runInContext(`JSON.stringify(rotationTokenTarget({address:'${address}',network:'Base',symbol:'USDC'}))`,context)),{address,chain:'base'});
+assert.ok(vm.runInContext(`rotationTokenMarkup({address:'${address}',network:'base'})`,context).includes('rotation-token'));
+assert.equal(vm.runInContext("rotationTokenTarget({symbol:'USDC',network:'base'})",context),null);
+assert.equal(vm.runInContext(`rotationTokenTarget({address:'${address}',network:'unknown'})`,context),null);
+const button={dataset:{token:address,chain:'base'}};context.root={querySelectorAll:()=>[button]};
+vm.runInContext('bindRotationTokens(root)',context);
+let stopped=false;context.openToken=(...args)=>calls.push(args);
+button.onclick({stopPropagation:()=>{stopped=true;}});
+assert.ok(stopped);assert.deepEqual(calls[0],[address,'base']);
+console.log('Rotation navigation passed: row chain overrides Radar, exact contract, symbol/address display, unresolved rows, isolated shared navigation.');

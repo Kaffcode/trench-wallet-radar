@@ -1,0 +1,5 @@
+TradingView Lightweight Charts™
+Copyright (с) 2025 TradingView, Inc. https://www.tradingview.com/
+
+Unmodified standalone build, version 5.0.9, from the lightweight-charts npm package.
+Apache-2.0; see lightweight-charts-LICENSE.txt.

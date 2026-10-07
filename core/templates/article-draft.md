@@ -19,7 +19,7 @@ Discovery → real-time engine → your decision logic → paper trades.
 ## What you need
 
 - An AI agent (Claude Code or Codex)
-- A CoinGecko API key ([get one](https://www.coingecko.com/en/api))
+- A CoinGecko API key ([get one](https://www.coingecko.com/en/api?utm_source=x&utm_content=kafka0202))
 - This starter repo: {{...your repo link...}}
 
 ## Step by step
@@ -51,6 +51,6 @@ Discovery → real-time engine → your decision logic → paper trades.
 ## Links
 
 - Repo: {{...your repo link...}}
-- CoinGecko API: https://www.coingecko.com/en/api
+- CoinGecko API: https://www.coingecko.com/en/api?utm_source=x&utm_content=kafka0202
 - Pricing: https://www.coingecko.com/en/api/pricing
 - Docs: https://docs.coingecko.com

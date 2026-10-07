@@ -114,7 +114,7 @@ Tests cover scoring, labels, scan deduplication, plan locks, rotation/consensus,
 ## CoinGecko API
 
 <!-- coingecko-links:start -->
-- [CoinGecko API](https://www.coingecko.com/en/api)
+- [CoinGecko API](https://www.coingecko.com/en/api?utm_source=x&utm_content=kafka0202)
 - [CoinGecko API Pricing](https://www.coingecko.com/en/api/pricing)
 - [CoinGecko API Documentation](https://docs.coingecko.com/)
 - [CoinGecko Agent Skill and MCP](https://docs.coingecko.com/ai-integration)

@@ -38,7 +38,7 @@ async def main():
         except PlanRestrictedError:
             print("[wallet_pnl] locked on this plan")
 
-        sample = "See the [CoinGecko API](https://www.coingecko.com/en/api) docs."
+        sample = "See the [CoinGecko API](https://www.coingecko.com/en/api?utm_source=x&utm_content=kafka0202) docs."
         print(f"[set_link dry run] {links.rewrite_text(sample, '@TestCreator', source='github')}")
 
         print(f"[credits] used={client.credits_used}")

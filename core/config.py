@@ -26,7 +26,7 @@ else:
 
 WS_URL = "wss://stream.coingecko.com/v1?x_cg_pro_api_key={key}"
 PRICING_URL = "https://www.coingecko.com/en/api/pricing"
-API_URL = "https://www.coingecko.com/en/api"
+API_URL = "https://www.coingecko.com/en/api?utm_source=x&utm_content=kafka0202"
 DOCS_URL = "https://docs.coingecko.com"
 
 # Onchain chains the repos know how to label. Add more here to support them in the UI.

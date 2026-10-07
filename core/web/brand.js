@@ -6,7 +6,7 @@ const LOGOS = {
   mono: "/brand/coingecko-api-mono.svg",
 };
 
-const API_URL = "https://www.coingecko.com/en/api";
+const API_URL = "https://www.coingecko.com/en/api?utm_source=x&utm_content=kafka0202";
 const PRICING_URL = "https://www.coingecko.com/en/api/pricing";
 const DOCS_URL = "https://docs.coingecko.com";
 
@@ -18,7 +18,7 @@ function themeMode() {
 
 function renderBadge(el) {
   const mode = themeMode();
-  el.innerHTML = `<a href="${API_URL}" target="_blank" rel="noopener"><img src="${LOGOS[mode]}" alt="Data powered by CoinGecko API" style="height:28px"></a>`;
+  el.innerHTML = `<a href="${API_URL.replaceAll("&", "&")}" target="_blank" rel="noopener"><img src="${LOGOS[mode]}" alt="Data powered by CoinGecko API" style="height:28px"></a>`;
 }
 
 function renderFooter(el) {
@@ -26,7 +26,7 @@ function renderFooter(el) {
     <div class="cg-footer">
       <a href="${DOCS_URL}" target="_blank" rel="noopener">Docs</a>
       <a href="${PRICING_URL}" target="_blank" rel="noopener">Pricing</a>
-      <a href="${API_URL}" target="_blank" rel="noopener">CoinGecko API</a>
+      <a href="${API_URL.replaceAll("&", "&")}" target="_blank" rel="noopener">CoinGecko API</a>
       <p class="cg-disclaimer">Data comes from the CoinGecko API. Nothing here is financial advice, and paper trades are simulated — no real orders are placed.</p>
     </div>`;
 }
